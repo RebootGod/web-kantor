@@ -3,13 +3,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://forsecure.id",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://Forsecure.id",
   ),
-  title: "ForSecure — Offensive Security & Secure Engineering",
+  title: "Forsecure — Offensive Security & Secure Engineering",
   description:
-    "ForSecure helps organizations identify and mitigate risk through penetration testing, secure coding training, and static application security testing.",
+    "Forsecure helps organizations identify and mitigate risk through penetration testing, secure coding training, and static application security testing.",
   openGraph: {
-    title: "ForSecure — Think Like an Attacker. Build with Security.",
+    title: "Forsecure — Think Like an Attacker. Build with Security.",
     description:
       "Offensive security, application security, and secure engineering for more resilient systems.",
     type: "website",
@@ -19,13 +19,13 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1733,
         height: 907,
-        alt: "ForSecure — Think Like an Attacker. Build with Security.",
+        alt: "Forsecure — Think Like an Attacker. Build with Security.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ForSecure — Think Like an Attacker. Build with Security.",
+    title: "Forsecure — Think Like an Attacker. Build with Security.",
     description:
       "Offensive security, application security, and secure engineering for more resilient systems.",
     images: ["/og.png"],
