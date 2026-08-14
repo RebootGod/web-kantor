@@ -49,7 +49,7 @@ export default function Home() {
               <span>Build with Security.</span>
             </h1>
             <p className="hero-lede">
-              ForSecure helps organizations uncover risk before attackers do—then
+              Forsecure helps organizations uncover risk before attackers do—then
               turns technical findings into systems that are more secure,
               resilient, and ready to scale.
             </p>
@@ -65,7 +65,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-console" aria-label="ForSecure assessment flow visualization">
+          <div className="hero-console" aria-label="Forsecure assessment flow visualization">
             <div className="console-grid" aria-hidden="true" />
             <div className="console-topline">
               <span>EXPLOIT CHAIN / 01</span>
@@ -98,7 +98,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="proof-strip" aria-label="ForSecure core values">
+        <section className="proof-strip" aria-label="Forsecure core values">
           <p>Security beyond the checklist.</p>
           <div className="proof-items">
             <span><b>01</b> Realistic attack paths</span>
@@ -212,7 +212,7 @@ export default function Home() {
           </div>
           <div className="capability-copy">
             <p>
-              ForSecure combines an attacker mindset with deep engineering
+              Forsecure combines an attacker mindset with deep engineering
               expertise. The result is risk-relevant guidance that teams can
               realistically implement and continue using long after the
               assessment ends.
@@ -242,7 +242,7 @@ export default function Home() {
           <Link className="contact-button" href="/contact">
             <span>
               <small>SECURE CHANNEL</small>
-              Contact ForSecure
+              Contact Forsecure
             </span>
             <b aria-hidden="true">↗</b>
           </Link>
@@ -252,10 +252,10 @@ export default function Home() {
       <footer>
         <div className="footer-brand">
           <span className="brand-mark brand-mark-small" aria-hidden="true"><span>F</span><span>S</span></span>
-          <div><b>ForSecure</b><span>Offensive Security & Secure Engineering</span></div>
+          <div><b>Forsecure</b><span>Offensive Security & Secure Engineering</span></div>
         </div>
         <p>Think Like an Attacker. Build with Security.</p>
-        <p className="copyright">© {new Date().getFullYear()} ForSecure</p>
+        <p className="copyright">© {new Date().getFullYear()} Forsecure</p>
       </footer>
     </div>
   );
