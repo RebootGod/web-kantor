@@ -71,6 +71,8 @@ Article content starts here.
 
 The hosting environment supports Node.js `22.22.0`. Two deployment modes are available.
 
+Production builds use Webpack because the shared hosting operating system cannot load the native SWC bindings required by Turbopack. Keep the `--webpack` flag in the `build` script.
+
 ### Recommended: Standalone Bundle
 
 Build the upload-ready directory locally or through cPanel Terminal:
