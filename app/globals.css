@@ -1035,12 +1035,6 @@ footer > p { margin: 0; color: #8ba399; font-size: 11px; }
   background: var(--line);
 }
 
-.service-detail-grid-visual {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .service-detail-panel {
   padding: clamp(35px, 5vw, 80px);
   background: var(--paper-bright);
@@ -1116,24 +1110,14 @@ footer > p { margin: 0; color: #8ba399; font-size: 11px; }
   color: rgba(251, 253, 249, 0.68);
 }
 
-.service-detail-grid-visual .service-detail-panel {
-  padding: clamp(36px, 4vw, 60px) clamp(24px, 4.5vw, 64px);
-}
-
-.service-detail-grid-visual .service-detail-panel h2 {
-  max-width: 760px;
-  margin-bottom: 28px;
-  font-size: clamp(32px, 3.4vw, 48px);
-}
-
-.service-detail-grid-visual .service-detail-list li {
+.service-detail-list-visual li {
   min-height: 84px;
   padding: 14px 0;
   grid-template-columns: 32px 52px minmax(0, 1fr);
   gap: 16px;
 }
 
-.service-detail-grid-visual .service-detail-item-number {
+.service-detail-list-visual .service-detail-item-number {
   align-self: start;
   padding-top: 9px;
   font-size: 10px;
@@ -1160,31 +1144,31 @@ footer > p { margin: 0; color: #8ba399; font-size: 11px; }
   height: 28px;
 }
 
-.service-detail-grid-visual .service-detail-item-copy {
+.service-detail-list-visual .service-detail-item-copy {
   align-self: center;
   gap: 4px;
 }
 
-.service-detail-grid-visual .service-detail-item-copy b {
+.service-detail-list-visual .service-detail-item-copy b {
   font-size: clamp(15px, 1.2vw, 19px);
   line-height: 1.25;
   letter-spacing: -0.035em;
 }
 
-.service-detail-grid-visual .service-detail-item-copy em {
+.service-detail-list-visual .service-detail-item-copy em {
   max-width: 620px;
   font-size: clamp(12px, 0.95vw, 14px);
   line-height: 1.45;
 }
 
-.service-detail-grid-visual .service-detail-list li.is-highlighted {
+.service-detail-list-visual li.is-highlighted {
   margin: 10px -14px 0;
   padding: 14px 14px;
   border: 1px solid var(--signal-dark);
   border-radius: 12px;
 }
 
-.service-detail-grid-visual .service-detail-panel-dark .service-detail-list li.is-highlighted {
+.service-detail-panel-dark .service-detail-list-visual li.is-highlighted {
   border-color: var(--signal);
 }
 
@@ -1208,7 +1192,7 @@ footer > p { margin: 0; color: #8ba399; font-size: 11px; }
 }
 
 @media (max-width: 1080px) {
-  .service-detail-grid-visual { grid-template-columns: 1fr; }
+  .service-detail-grid-has-visuals { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 860px) {
@@ -1237,20 +1221,18 @@ footer > p { margin: 0; color: #8ba399; font-size: 11px; }
   .service-detail-summary { padding: 24px 20px; box-shadow: 8px 8px 0 var(--signal); }
   .service-detail-panel { padding: 75px 20px; }
   .service-detail-panel h2 { margin-bottom: 38px; font-size: 45px; }
-  .service-detail-grid-visual .service-detail-panel { padding: 54px 20px; }
-  .service-detail-grid-visual .service-detail-panel h2 { margin-bottom: 30px; font-size: 42px; }
-  .service-detail-grid-visual .service-detail-list li {
+  .service-detail-list-visual li {
     min-height: 0;
     padding: 18px 0;
     grid-template-columns: 32px 52px minmax(0, 1fr);
     gap: 12px;
   }
-  .service-detail-grid-visual .service-detail-item-number { padding-top: 10px; font-size: 10px; }
+  .service-detail-list-visual .service-detail-item-number { padding-top: 10px; font-size: 10px; }
   .service-detail-item-figure { width: 48px; height: 48px; }
   .service-detail-item-figure svg { width: 26px; height: 26px; }
-  .service-detail-grid-visual .service-detail-item-copy b { font-size: 17px; }
-  .service-detail-grid-visual .service-detail-item-copy em { font-size: 13px; }
-  .service-detail-grid-visual .service-detail-list li.is-highlighted {
+  .service-detail-list-visual .service-detail-item-copy b { font-size: 17px; }
+  .service-detail-list-visual .service-detail-item-copy em { font-size: 13px; }
+  .service-detail-list-visual li.is-highlighted {
     margin: 14px -10px 0;
     padding: 18px 10px;
     border-radius: 10px;

@@ -72,12 +72,14 @@ export default async function ServicePage({ params }: ServicePageProps) {
         </section>
 
         <section
-          className={`service-detail-grid section-pad${hasVisualDetails ? " service-detail-grid-visual" : ""}`}
+          className={`service-detail-grid section-pad${hasVisualDetails ? " service-detail-grid-has-visuals" : ""}`}
         >
           <article className="service-detail-panel">
             <p className="kicker">What we cover</p>
             <h2>Assessment scope</h2>
-            <ul className="service-detail-list">
+            <ul
+              className={`service-detail-list${hasVisualDetails ? " service-detail-list-visual" : ""}`}
+            >
               {service.coverage.map((item, index) => (
                 <li
                   key={item.title}
@@ -104,7 +106,9 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <article className="service-detail-panel service-detail-panel-dark">
             <p className="kicker kicker-dark">What you receive</p>
             <h2>Clear, actionable output</h2>
-            <ul className="service-detail-list">
+            <ul
+              className={`service-detail-list${hasVisualDetails ? " service-detail-list-visual" : ""}`}
+            >
               {service.deliverables.map((item, index) => (
                 <li
                   key={item.title}
