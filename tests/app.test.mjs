@@ -39,3 +39,21 @@ test("keeps Research content and contact configuration deployable", async () => 
   assert.match(envExample, /CONTACT_TO=/);
   assert.doesNotMatch(envExample, /^SMTP_PASSWORD=$/m);
 });
+
+test("publishes the current service offering", async () => {
+  const serviceData = await readFile(
+    new URL("app/services/service-data.ts", root),
+    "utf8",
+  );
+  const contactForm = await readFile(
+    new URL("app/contact/contact-form.tsx", root),
+    "utf8",
+  );
+
+  assert.match(serviceData, /slug: "cybersecurity-consulting"/);
+  assert.match(serviceData, /ISO\/IEC 27001/);
+  assert.match(serviceData, /ISO\/IEC 27701/);
+  assert.match(serviceData, /Tested\. Hardened\. Production-ready applications\./);
+  assert.match(contactForm, /<option>Cybersecurity Consulting<\/option>/);
+  assert.doesNotMatch(serviceData, /title: "Static Application Security Testing"/);
+});

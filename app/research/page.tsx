@@ -5,9 +5,9 @@ import { SiteHeader } from "../site-header";
 import { ResearchList, type ResearchItem } from "./research-list";
 
 export const metadata: Metadata = {
-  title: "Research — ForSecure",
+  title: "Research — Forsecure",
   description:
-    "ForSecure research, technical articles, company insights, and security project write-ups.",
+    "Forsecure research, technical articles, company insights, and security project write-ups.",
 };
 
 export default async function ResearchPage() {
@@ -78,10 +78,10 @@ export default async function ResearchPage() {
       <footer>
         <div className="footer-brand">
           <span className="brand-mark brand-mark-small" aria-hidden="true"><span>F</span><span>S</span></span>
-          <div><b>ForSecure</b><span>Offensive Security &amp; Secure Engineering</span></div>
+          <div><b>Forsecure</b><span>Offensive Security &amp; Secure Engineering</span></div>
         </div>
         <p>Research / Articles / Projects</p>
-        <p className="copyright">© {new Date().getFullYear()} ForSecure</p>
+        <p className="copyright">© {new Date().getFullYear()} Forsecure</p>
       </footer>
     </div>
   );

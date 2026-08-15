@@ -28,7 +28,7 @@ const approach = [
 const capabilities = [
   "Offensive security expertise",
   "Application security",
-  "Security automation",
+  "Governance, risk, and compliance",
   "Secure software engineering",
 ];
 
@@ -111,11 +111,11 @@ export default function Home() {
           <div className="section-heading">
             <div>
               <p className="kicker">What we secure</p>
-              <h2 id="services-title">From attack surface to source code.</h2>
+              <h2 id="services-title">From attack surface to security governance.</h2>
             </div>
             <p>
-              Offensive testing, developer enablement, and source-code security
-              work together to reduce risk across the software lifecycle.
+              Offensive testing, developer enablement, and cybersecurity
+              consulting work together to reduce technical and organizational risk.
             </p>
           </div>
 

@@ -1,0 +1,4 @@
+---
+deployment:
+  tasks:
+    - /bin/bash /DATA/forsecur/forsecure_app/scripts/deploy-cpanel.sh

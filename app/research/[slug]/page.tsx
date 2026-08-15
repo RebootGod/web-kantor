@@ -25,10 +25,10 @@ export async function generateMetadata({
   if (!article) return {};
 
   return {
-    title: `${article.title} — ForSecure Research`,
+    title: `${article.title} — Forsecure Research`,
     description: article.excerpt,
     openGraph: {
-      title: `${article.title} — ForSecure Research`,
+      title: `${article.title} — Forsecure Research`,
       description: article.excerpt,
       type: "article",
       publishedTime: article.publishedAt,
@@ -91,10 +91,10 @@ export default async function ResearchArticlePage({
       <footer>
         <div className="footer-brand">
           <span className="brand-mark brand-mark-small" aria-hidden="true"><span>F</span><span>S</span></span>
-          <div><b>ForSecure</b><span>Offensive Security &amp; Secure Engineering</span></div>
+          <div><b>Forsecure</b><span>Offensive Security &amp; Secure Engineering</span></div>
         </div>
         <p>Research / {article.category}</p>
-        <p className="copyright">© {new Date().getFullYear()} ForSecure</p>
+        <p className="copyright">© {new Date().getFullYear()} Forsecure</p>
       </footer>
     </div>
   );

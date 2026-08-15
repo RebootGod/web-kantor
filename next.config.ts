@@ -3,6 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
 
+  async redirects() {
+    return [
+      {
+        source: "/services/static-application-security-testing",
+        destination: "/services/cybersecurity-consulting",
+        permanent: true,
+      },
+    ];
+  },
+
   outputFileTracingIncludes: {
     "/*": ["./content/research/**/*.mdx"],
   },

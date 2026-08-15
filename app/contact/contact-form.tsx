@@ -71,7 +71,7 @@ export function ContactForm() {
           <select name="service" defaultValue="Penetration Testing" required>
             <option>Penetration Testing</option>
             <option>Secure Coding Training Platform</option>
-            <option>Static Application Security Testing</option>
+            <option>Cybersecurity Consulting</option>
             <option>Other security inquiry</option>
           </select>
         </label>

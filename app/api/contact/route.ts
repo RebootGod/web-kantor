@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 const SERVICE_OPTIONS = new Set([
   "Penetration Testing",
   "Secure Coding Training Platform",
-  "Static Application Security Testing",
+  "Cybersecurity Consulting",
   "Other security inquiry",
 ]);
 

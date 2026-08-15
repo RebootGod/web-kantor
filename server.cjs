@@ -13,10 +13,10 @@ app
     http
       .createServer((request, response) => handle(request, response))
       .listen(port, hostname, () => {
-        console.log(`ForSecure listening on http://${hostname}:${port}`);
+        console.log(`Forsecure listening on http://${hostname}:${port}`);
       });
   })
   .catch((error) => {
-    console.error("Unable to start ForSecure", error);
+    console.error("Unable to start Forsecure", error);
     process.exit(1);
   });

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   ),
   title: "Forsecure — Offensive Security & Secure Engineering",
   description:
-    "Forsecure helps identify and mitigate risk through penetration testing, secure coding training, and static application security testing.",
+    "Forsecure helps identify and mitigate risk through penetration testing, secure coding training, and cybersecurity consulting.",
   openGraph: {
     title: "Forsecure — Think Like an Attacker. Build with Security.",
     description:

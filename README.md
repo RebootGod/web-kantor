@@ -1,6 +1,6 @@
-# ForSecure Website
+# Forsecure Website
 
-Production website for ForSecure, built with Next.js App Router and deployed as a Node.js application.
+Production website for Forsecure, built with Next.js App Router and deployed as a Node.js application.
 
 ## Stack
 
@@ -55,7 +55,7 @@ title: "Article title"
 excerpt: "Short summary used on the Research page and in metadata."
 category: "Security Research"
 publishedAt: "2026-08-13"
-author: "ForSecure Research"
+author: "Forsecure Research"
 status: "Published"
 ---
 
@@ -69,11 +69,26 @@ Article content starts here.
 
 ## cPanel Deployment
 
-The hosting environment supports Node.js `22.22.0`. Two deployment modes are available.
+The hosting environment supports Node.js `22.22.0`. The repository includes a `.cpanel.yml` deployment task that installs dependencies, builds the application, and restarts it automatically whenever a deployment runs from **Git Version Control**.
 
 Production builds use Webpack because the shared hosting operating system cannot load the native SWC bindings required by Turbopack. Keep the `--webpack` flag in the `build` script.
 
-### Recommended: Standalone Bundle
+### Recommended: Git Version Control Auto Deploy
+
+When pulling from GitHub through cPanel's interface, deployment runs in two steps: fetch the latest commit, then run the deployment task. Direct pushes to a cPanel-managed repository can deploy automatically through its post-receive hook; see [cPanel's Git Deployment guide](https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/).
+
+1. Push to `main` on GitHub.
+2. In cPanel, open **Git Version Control → forsecure_app → Manage → Pull or Deploy**.
+3. Click **Update from Remote** to fetch the new commit.
+4. Click **Deploy HEAD Commit**. cPanel reads `.cpanel.yml` and runs `scripts/deploy-cpanel.sh`, which:
+   - Verifies (and repairs if needed) the CloudLinux `node_modules` symlink.
+   - Runs `npm install --include=dev`.
+   - Rebuilds with `npm run build` (Webpack, single worker).
+   - Touches `tmp/restart.txt` so Passenger restarts the Node.js application.
+
+No manual Terminal steps are required once this is set up. If `Deploy HEAD Commit` fails, check **Last Deployment Information** in the same screen for the task output.
+
+### Alternative: Standalone Bundle
 
 Build the upload-ready directory locally or through cPanel Terminal:
 
@@ -99,9 +114,28 @@ Add every variable from `.env.example` through the cPanel Node.js application en
 If the repository is cloned directly on the server:
 
 ```bash
-npm install
+source /DATA/forsecur/nodevenv/forsecure_app/22/bin/activate
+cd /DATA/forsecur/forsecure_app
+
+VENV_ROOT="$(dirname "$(dirname "$(which node)")")"
+mkdir -p "$VENV_ROOT/lib/node_modules"
+rm -rf node_modules
+ln -s "$VENV_ROOT/lib/node_modules" node_modules
+
+npm install --include=dev
+rm -rf .next
 npm run build
 ```
+
+CloudLinux expects the application's `node_modules` path to point to the Node.js virtual environment. Verify it before installing dependencies:
+
+```bash
+ls -ld node_modules
+```
+
+The expected destination is `/DATA/forsecur/nodevenv/forsecure_app/22/lib/node_modules`.
+
+The build is intentionally configured to use Webpack, one build CPU, and one static-generation page at a time. This prevents the shared-hosting memory limit from killing a build that would otherwise start nine workers. Native SWC warnings about `GLIBC_2.29` are expected on this server; Next.js falls back to its WASM bindings.
 
 Set the application startup file to `server.cjs`, configure the environment variables, and restart the app. This mode keeps the full repository and production dependencies on the server.
 
@@ -114,6 +148,19 @@ For a standalone deployment:
 3. Run `npm run build:cpanel`.
 4. Replace the application-root files with `.cpanel-build`.
 5. Restart the Node.js application in cPanel.
+
+For a repository deployment on the server:
+
+```bash
+source /DATA/forsecur/nodevenv/forsecure_app/22/bin/activate
+cd /DATA/forsecur/forsecure_app
+git pull origin main
+npm install --include=dev
+rm -rf .next
+npm run build
+```
+
+Keep the existing `node_modules` symlink intact when updating the application.
 
 ## Contact Form Troubleshooting
 

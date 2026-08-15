@@ -3,9 +3,9 @@ import { ContactForm } from "./contact-form";
 import { SiteHeader } from "../site-header";
 
 export const metadata: Metadata = {
-  title: "Contact Us — ForSecure",
+  title: "Contact Us — Forsecure",
   description:
-    "Contact ForSecure about penetration testing, secure coding training, and static application security testing.",
+    "Contact Forsecure about penetration testing, secure coding training, and cybersecurity consulting.",
 };
 
 export default function ContactPage() {
@@ -61,10 +61,10 @@ export default function ContactPage() {
       <footer>
         <div className="footer-brand">
           <span className="brand-mark brand-mark-small" aria-hidden="true"><span>F</span><span>S</span></span>
-          <div><b>ForSecure</b><span>Offensive Security &amp; Secure Engineering</span></div>
+          <div><b>Forsecure</b><span>Offensive Security &amp; Secure Engineering</span></div>
         </div>
         <p>Direct security conversations.</p>
-        <p className="copyright">© {new Date().getFullYear()} ForSecure</p>
+        <p className="copyright">© {new Date().getFullYear()} Forsecure</p>
       </footer>
     </div>
   );

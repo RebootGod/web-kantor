@@ -31,7 +31,7 @@ function parseArticle(slug: string, source: string): ResearchArticleSource {
     excerpt: String(data.excerpt || ""),
     category: String(data.category || "Security Research"),
     publishedAt: String(data.publishedAt || ""),
-    author: String(data.author || "ForSecure Research"),
+    author: String(data.author || "Forsecure Research"),
     status,
     content,
   };

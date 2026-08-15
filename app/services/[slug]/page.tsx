@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SiteHeader } from "../../site-header";
 import { getService, services } from "../service-data";
+import { ServiceDetailIcon } from "../service-detail-icon";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -21,10 +22,10 @@ export async function generateMetadata({
   if (!service) return {};
 
   return {
-    title: `${service.title} — ForSecure`,
+    title: `${service.title} — Forsecure`,
     description: service.copy,
     openGraph: {
-      title: `${service.title} — ForSecure`,
+      title: `${service.title} — Forsecure`,
       description: service.copy,
     },
   };
@@ -35,6 +36,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
   const service = getService(slug);
 
   if (!service) notFound();
+
+  const hasVisualDetails = [...service.coverage, ...service.deliverables].some(
+    (item) => item.icon,
+  );
 
   return (
     <div className="site-shell service-detail-shell">
@@ -66,15 +71,31 @@ export default async function ServicePage({ params }: ServicePageProps) {
           </aside>
         </section>
 
-        <section className="service-detail-grid section-pad">
+        <section
+          className={`service-detail-grid section-pad${hasVisualDetails ? " service-detail-grid-visual" : ""}`}
+        >
           <article className="service-detail-panel">
             <p className="kicker">What we cover</p>
             <h2>Assessment scope</h2>
-            <ul>
+            <ul className="service-detail-list">
               {service.coverage.map((item, index) => (
-                <li key={item}>
-                  <span>0{index + 1}</span>
-                  {item}
+                <li
+                  key={item.title}
+                  className={
+                    `${item.icon ? "has-icon" : ""}${item.highlight ? " is-highlighted" : ""}`.trim() ||
+                    undefined
+                  }
+                >
+                  <span className="service-detail-item-number">0{index + 1}</span>
+                  {item.icon ? (
+                    <span className="service-detail-item-figure" aria-hidden="true">
+                      <ServiceDetailIcon name={item.icon} />
+                    </span>
+                  ) : null}
+                  <span className="service-detail-item-copy">
+                    <b>{item.title}</b>
+                    {item.description ? <em>{item.description}</em> : null}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -83,11 +104,25 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <article className="service-detail-panel service-detail-panel-dark">
             <p className="kicker kicker-dark">What you receive</p>
             <h2>Clear, actionable output</h2>
-            <ul>
+            <ul className="service-detail-list">
               {service.deliverables.map((item, index) => (
-                <li key={item}>
-                  <span>0{index + 1}</span>
-                  {item}
+                <li
+                  key={item.title}
+                  className={
+                    `${item.icon ? "has-icon" : ""}${item.highlight ? " is-highlighted" : ""}`.trim() ||
+                    undefined
+                  }
+                >
+                  <span className="service-detail-item-number">0{index + 1}</span>
+                  {item.icon ? (
+                    <span className="service-detail-item-figure" aria-hidden="true">
+                      <ServiceDetailIcon name={item.icon} />
+                    </span>
+                  ) : null}
+                  <span className="service-detail-item-copy">
+                    <b>{item.title}</b>
+                    {item.description ? <em>{item.description}</em> : null}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -102,7 +137,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <Link className="contact-button" href="/contact">
             <span>
               <small>SECURE CHANNEL</small>
-              Contact ForSecure
+              Contact Forsecure
             </span>
             <b aria-hidden="true">↗</b>
           </Link>
@@ -112,10 +147,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <footer>
         <div className="footer-brand">
           <span className="brand-mark brand-mark-small" aria-hidden="true"><span>F</span><span>S</span></span>
-          <div><b>ForSecure</b><span>Offensive Security &amp; Secure Engineering</span></div>
+          <div><b>Forsecure</b><span>Offensive Security &amp; Secure Engineering</span></div>
         </div>
-        <p>{service.shortTitle} / ForSecure</p>
-        <p className="copyright">© {new Date().getFullYear()} ForSecure</p>
+        <p>{service.shortTitle} / Forsecure</p>
+        <p className="copyright">© {new Date().getFullYear()} Forsecure</p>
       </footer>
     </div>
   );
