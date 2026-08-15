@@ -53,6 +53,10 @@ test("publishes the current service offering", async () => {
   assert.match(serviceData, /slug: "cybersecurity-consulting"/);
   assert.match(serviceData, /ISO\/IEC 27001/);
   assert.match(serviceData, /ISO\/IEC 27701/);
+  assert.match(serviceData, /Android and iOS Application/);
+  assert.match(serviceData, /Network and Infrastructure/);
+  assert.match(serviceData, /\["Hands-on vulnerable code labs", "code-lab"\]/);
+  assert.match(serviceData, /\["ISO\/IEC 27701 privacy information management", "privacy"\]/);
   assert.match(serviceData, /Tested\. Hardened\. Production-ready applications\./);
   assert.match(contactForm, /<option>Cybersecurity Consulting<\/option>/);
   assert.doesNotMatch(serviceData, /title: "Static Application Security Testing"/);

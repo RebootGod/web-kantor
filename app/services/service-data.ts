@@ -17,11 +17,23 @@ export type ServiceDetailIcon =
   | "mobile"
   | "identity"
   | "attack-path"
+  | "network"
   | "retest"
   | "risk-report"
   | "technical-evidence"
   | "remediation"
-  | "shield-check";
+  | "shield-check"
+  | "code-lab"
+  | "code-path"
+  | "learning"
+  | "progress"
+  | "competency"
+  | "roadmap"
+  | "privacy"
+  | "compliance"
+  | "policy"
+  | "audit"
+  | "advisory";
 
 export type ServiceDetailItem = {
   title: string;
@@ -30,8 +42,10 @@ export type ServiceDetailItem = {
   highlight?: boolean;
 };
 
-function simpleItems(items: string[]): ServiceDetailItem[] {
-  return items.map((title) => ({ title }));
+function iconItems(
+  items: Array<[title: string, icon: ServiceDetailIcon]>,
+): ServiceDetailItem[] {
+  return items.map(([title, icon]) => ({ title, icon }));
 }
 
 export const services: Service[] = [
@@ -42,7 +56,7 @@ export const services: Service[] = [
     title: "Penetration Testing",
     shortTitle: "Pentest",
     copy:
-      "Attacker-led testing across web applications, APIs, Android apps, and connected mobile ecosystems.",
+      "Attacker-led testing across web applications, APIs, mobile applications, networks, and supporting infrastructure.",
     eyebrow: "Offensive security assessment",
     headline: "Find the attack paths that create real business risk.",
     description:
@@ -55,9 +69,9 @@ export const services: Service[] = [
         icon: "application",
       },
       {
-        title: "Android applications and local storage",
+        title: "Android and iOS Application",
         description:
-          "Assessment of application behavior, device-side controls, sensitive data storage, and reverse-engineering exposure.",
+          "Assessment of mobile application behavior, device-side controls, sensitive data storage, and reverse-engineering exposure across Android and iOS.",
         icon: "mobile",
       },
       {
@@ -67,10 +81,10 @@ export const services: Service[] = [
         icon: "identity",
       },
       {
-        title: "Mobile-to-backend communication and attack paths",
+        title: "Network and Infrastructure",
         description:
-          "End-to-end testing of trust boundaries between mobile clients, APIs, backend systems, and connected services.",
-        icon: "attack-path",
+          "Testing of exposed services, network segmentation, infrastructure configuration, and attack paths across connected systems.",
+        icon: "network",
       },
       {
         title: "Retesting after remediation",
@@ -126,19 +140,19 @@ export const services: Service[] = [
     headline: "Turn secure coding knowledge into an engineering habit.",
     description:
       "The Secure Coding Training Platform gives developers practical, scenario-based exercises built around vulnerabilities they encounter in real software. Teams learn how insecure patterns emerge, how exploitation works, and how to implement safer alternatives inside the development workflow.",
-    coverage: simpleItems([
-      "Hands-on vulnerable code labs",
-      "Language and framework-relevant learning paths",
-      "OWASP and application-security fundamentals",
-      "Role-based progress and competency tracking",
-      "Training programs aligned with engineering priorities",
+    coverage: iconItems([
+      ["Hands-on vulnerable code labs", "code-lab"],
+      ["Language and framework-relevant learning paths", "code-path"],
+      ["OWASP and application-security fundamentals", "shield-check"],
+      ["Role-based progress and competency tracking", "progress"],
+      ["Training programs aligned with engineering priorities", "learning"],
     ]),
-    deliverables: simpleItems([
-      "Structured developer learning paths",
-      "Interactive remediation exercises",
-      "Team progress and completion visibility",
-      "Security competency measurement",
-      "Program recommendations for continuous improvement",
+    deliverables: iconItems([
+      ["Structured developer learning paths", "learning"],
+      ["Interactive remediation exercises", "remediation"],
+      ["Team progress and completion visibility", "progress"],
+      ["Security competency measurement", "competency"],
+      ["Program recommendations for continuous improvement", "roadmap"],
     ]),
   },
   {
@@ -153,19 +167,19 @@ export const services: Service[] = [
     headline: "Turn security and privacy requirements into an actionable program.",
     description:
       "Our cybersecurity consulting helps organizations understand their current security and privacy posture, identify control gaps, and build a realistic roadmap toward stronger governance and audit readiness. Recommendations are tailored to business priorities, ISO/IEC 27001, ISO/IEC 27701, and applicable Indonesian regulatory requirements.",
-    coverage: simpleItems([
-      "ISO/IEC 27001 ISMS readiness and implementation",
-      "ISO/IEC 27701 privacy information management",
-      "Security and privacy control gap assessments",
-      "Alignment with applicable Indonesian regulations",
-      "Policy, governance, and audit preparation",
+    coverage: iconItems([
+      ["ISO/IEC 27001 ISMS readiness and implementation", "shield-check"],
+      ["ISO/IEC 27701 privacy information management", "privacy"],
+      ["Security and privacy control gap assessments", "technical-evidence"],
+      ["Alignment with applicable Indonesian regulations", "compliance"],
+      ["Policy, governance, and audit preparation", "policy"],
     ]),
-    deliverables: simpleItems([
-      "Current-state and gap assessment",
-      "Risk-based compliance roadmap",
-      "Control and policy recommendations",
-      "Evidence and audit-readiness guidance",
-      "Implementation priorities and advisory support",
+    deliverables: iconItems([
+      ["Current-state and gap assessment", "technical-evidence"],
+      ["Risk-based compliance roadmap", "roadmap"],
+      ["Control and policy recommendations", "policy"],
+      ["Evidence and audit-readiness guidance", "audit"],
+      ["Implementation priorities and advisory support", "advisory"],
     ]),
   },
 ];
