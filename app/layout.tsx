@@ -9,8 +9,8 @@ export const metadata: Metadata = {
   description:
     "Forsecure helps identify and mitigate risk through penetration testing, secure coding training, and cybersecurity consulting.",
   icons: {
-    icon: [{ url: "/forsecure_logo_ico.ico", type: "image/x-icon" }],
-    shortcut: ["/forsecure_logo_ico.ico"],
+    icon: [{ url: "/forsecure_fs_ico.ico", type: "image/x-icon" }],
+    shortcut: ["/forsecure_fs_ico.ico"],
   },
   openGraph: {
     title: "Forsecure — Think Like an Attacker. Build with Security.",

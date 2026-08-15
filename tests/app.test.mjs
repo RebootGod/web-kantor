@@ -45,8 +45,8 @@ test("ships the Forsecure logo and favicon", async () => {
   const header = await readFile(new URL("app/site-header.tsx", root), "utf8");
 
   await access(new URL("public/forsecure-logo.png", root));
-  await access(new URL("public/forsecure_logo_ico.ico", root));
-  assert.match(layout, /forsecure_logo_ico\.ico/);
+  await access(new URL("public/forsecure_fs_ico.ico", root));
+  assert.match(layout, /forsecure_fs_ico\.ico/);
   assert.match(header, /forsecure-logo\.png/);
 });
 
