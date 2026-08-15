@@ -40,6 +40,16 @@ test("keeps Research content and contact configuration deployable", async () => 
   assert.doesNotMatch(envExample, /^SMTP_PASSWORD=$/m);
 });
 
+test("ships the Forsecure logo and favicon", async () => {
+  const layout = await readFile(new URL("app/layout.tsx", root), "utf8");
+  const header = await readFile(new URL("app/site-header.tsx", root), "utf8");
+
+  await access(new URL("public/forsecure-logo.png", root));
+  await access(new URL("public/forsecure_logo_ico.ico", root));
+  assert.match(layout, /forsecure_logo_ico\.ico/);
+  assert.match(header, /forsecure-logo\.png/);
+});
+
 test("publishes the current service offering", async () => {
   const serviceData = await readFile(
     new URL("app/services/service-data.ts", root),

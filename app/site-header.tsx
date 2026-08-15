@@ -1,14 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function SiteHeader() {
   return (
     <header className="topbar">
       <Link className="brand" href="/" aria-label="Forsecure homepage">
-        <span className="brand-mark" aria-hidden="true">
-          <span>F</span>
-          <span>S</span>
-        </span>
-        <span className="brand-name">Forsecure</span>
+        <Image
+          className="brand-logo"
+          src="/forsecure-logo.png"
+          alt="Forsecure"
+          width={800}
+          height={172}
+          priority
+        />
       </Link>
 
       <nav className="nav-links" aria-label="Main navigation">
