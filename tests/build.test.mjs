@@ -22,6 +22,9 @@ test("includes all public application routes in the build manifest", async () =>
     "/research/[slug]/page",
     "/services/[slug]/page",
     "/api/contact/route",
+    "/sitemap.xml/route",
+    "/robots.txt/route",
+    "/manifest.webmanifest/route",
   ]) {
     assert.ok(routes.includes(route), `Expected ${route} in app paths manifest`);
   }
@@ -29,7 +32,10 @@ test("includes all public application routes in the build manifest", async () =>
 
 test("keeps Research content and contact configuration deployable", async () => {
   const article = await readFile(
-    new URL("content/research/introducing-forsecure-research.mdx", root),
+    new URL(
+      "features/research/backend/content/introducing-forsecure-research.mdx",
+      root,
+    ),
     "utf8",
   );
   const envExample = await readFile(new URL(".env.example", root), "utf8");
@@ -42,7 +48,10 @@ test("keeps Research content and contact configuration deployable", async () => 
 
 test("ships the Forsecure logo and favicon", async () => {
   const layout = await readFile(new URL("app/layout.tsx", root), "utf8");
-  const header = await readFile(new URL("app/site-header.tsx", root), "utf8");
+  const header = await readFile(
+    new URL("shared/frontend/components/site-header.tsx", root),
+    "utf8",
+  );
 
   await access(new URL("public/forsecure-logo.png", root));
   await access(new URL("public/forsecure_fs_ico.ico", root));
@@ -51,25 +60,34 @@ test("ships the Forsecure logo and favicon", async () => {
 });
 
 test("publishes the current service offering", async () => {
-  const serviceData = await readFile(
-    new URL("app/services/service-data.ts", root),
+  const serviceCatalog = await readFile(
+    new URL("features/services/backend/service-catalog.ts", root),
     "utf8",
   );
-  const contactForm = await readFile(
-    new URL("app/contact/contact-form.tsx", root),
+  const contactOptions = await readFile(
+    new URL("features/contact-us/shared/contact-options.ts", root),
     "utf8",
   );
 
-  assert.match(serviceData, /slug: "cybersecurity-consulting"/);
-  assert.match(serviceData, /ISO\/IEC 27001/);
-  assert.match(serviceData, /ISO\/IEC 27701/);
-  assert.match(serviceData, /Android and iOS Application/);
-  assert.match(serviceData, /Network and Infrastructure/);
-  assert.match(serviceData, /\["Hands-on vulnerable code labs", "code-lab"\]/);
-  assert.match(serviceData, /\["ISO\/IEC 27701 privacy information management", "privacy"\]/);
-  assert.match(serviceData, /Tested\. Hardened\. Production-ready applications\./);
-  assert.match(contactForm, /<option>Cybersecurity Consulting<\/option>/);
-  assert.doesNotMatch(serviceData, /title: "Static Application Security Testing"/);
+  assert.match(serviceCatalog, /slug: "cybersecurity-consulting"/);
+  assert.match(serviceCatalog, /ISO\/IEC 27001/);
+  assert.match(serviceCatalog, /ISO\/IEC 27701/);
+  assert.match(serviceCatalog, /Android and iOS Application/);
+  assert.match(serviceCatalog, /Network and Infrastructure/);
+  assert.match(serviceCatalog, /\["Hands-on vulnerable code labs", "code-lab"\]/);
+  assert.match(
+    serviceCatalog,
+    /\["ISO\/IEC 27701 privacy information management", "privacy"\]/,
+  );
+  assert.match(
+    serviceCatalog,
+    /Tested\. Hardened\. Production-ready applications\./,
+  );
+  assert.match(contactOptions, /"Cybersecurity Consulting"/);
+  assert.doesNotMatch(
+    serviceCatalog,
+    /title: "Static Application Security Testing"/,
+  );
 });
 
 test("keeps the cPanel deployment workflow repeatable", async () => {
@@ -84,4 +102,13 @@ test("keeps the cPanel deployment workflow repeatable", async () => {
   assert.match(deployScript, /npm run build/);
   assert.match(deployScript, /git checkout -- next-env\.d\.ts/);
   assert.match(deployScript, /touch tmp\/restart\.txt/);
+});
+
+test("bundles Research content into the standalone deployment", async () => {
+  await access(
+    new URL(
+      ".next/standalone/features/research/backend/content/introducing-forsecure-research.mdx",
+      root,
+    ),
+  );
 });

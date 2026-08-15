@@ -1,4 +1,4 @@
-import type { ServiceDetailIcon as ServiceDetailIconName } from "./service-data";
+import type { ServiceDetailIcon as ServiceDetailIconName } from "@/features/services/backend/service-catalog";
 
 type ServiceDetailIconProps = {
   name: ServiceDetailIconName;

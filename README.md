@@ -10,6 +10,27 @@ Production website for Forsecure, built with Next.js App Router and deployed as 
 - Nodemailer with cPanel SMTP for contact inquiries
 - Standalone Next.js output for cPanel deployment
 
+## Project Structure
+
+The codebase is organized by feature. Each page owns its frontend and backend code, and cross-page code lives in `shared`.
+
+```text
+app/                              App Router adapters (routing, metadata, SEO routes)
+features/
+  homepage/{frontend,backend}     Homepage sections and static content
+  services/{frontend,backend}     Service detail pages and the service catalog
+  research/{frontend,backend}     Research pages, MDX repository, and article content
+  contact-us/{frontend,backend,shared}
+                                  Contact page, contact API, validation, mailer
+shared/
+  config/                         Site-wide configuration (URL, brand, contact details)
+  frontend/components/            Header, footer, and reusable call-to-action blocks
+  frontend/styles/                Global stylesheet
+  seo/                            Metadata helpers and structured data
+```
+
+Files under `app/` stay thin: they re-export page components and metadata from `features/*`. Add new pages by creating a feature folder and wiring a small route file.
+
 ## Local Development
 
 ```bash
@@ -47,7 +68,7 @@ Never commit `.env.local` or production SMTP credentials.
 
 ## Publishing Research
 
-Add an `.mdx` file to `content/research`. The filename becomes the article URL slug.
+Add an `.mdx` file to `features/research/backend/content`. The filename becomes the article URL slug.
 
 ```mdx
 ---

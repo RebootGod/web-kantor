@@ -16,8 +16,18 @@ await cp(path.join(root, ".next", "static"), path.join(outputDirectory, ".next",
 await cp(path.join(root, "public"), path.join(outputDirectory, "public"), {
   recursive: true,
 });
-await cp(path.join(root, "content"), path.join(outputDirectory, "content"), {
-  recursive: true,
-});
+const researchContentOutput = path.join(
+  outputDirectory,
+  "features",
+  "research",
+  "backend",
+  "content",
+);
+await mkdir(path.dirname(researchContentOutput), { recursive: true });
+await cp(
+  path.join(root, "features", "research", "backend", "content"),
+  researchContentOutput,
+  { recursive: true },
+);
 
 console.log(`cPanel deployment bundle created at ${outputDirectory}`);

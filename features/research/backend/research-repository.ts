@@ -1,11 +1,20 @@
+import "server-only";
+
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { evaluate } from "@mdx-js/mdx";
 import matter from "gray-matter";
+import { cache } from "react";
 import * as jsxRuntime from "react/jsx-runtime";
 import remarkGfm from "remark-gfm";
 
-const RESEARCH_DIRECTORY = path.join(process.cwd(), "content", "research");
+const RESEARCH_DIRECTORY = path.join(
+  process.cwd(),
+  "features",
+  "research",
+  "backend",
+  "content",
+);
 
 export type ResearchArticle = {
   slug: string;
@@ -37,7 +46,7 @@ function parseArticle(slug: string, source: string): ResearchArticleSource {
   };
 }
 
-async function readArticle(slug: string) {
+const readArticle = cache(async (slug: string) => {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return null;
 
   try {
@@ -49,9 +58,9 @@ async function readArticle(slug: string) {
   } catch {
     return null;
   }
-}
+});
 
-export async function getResearchArticles() {
+export const getResearchArticles = cache(async () => {
   let fileNames: string[] = [];
 
   try {
@@ -84,9 +93,9 @@ export async function getResearchArticles() {
         new Date(second.publishedAt).getTime() -
         new Date(first.publishedAt).getTime(),
     );
-}
+});
 
-export async function getResearchArticle(slug: string) {
+export const getResearchArticle = cache(async (slug: string) => {
   const article = await readArticle(slug);
 
   if (!article || article.status !== "Published") return null;
@@ -103,4 +112,4 @@ export async function getResearchArticle(slug: string) {
     ...metadata,
     Content: compiledModule.default,
   };
-}
+});

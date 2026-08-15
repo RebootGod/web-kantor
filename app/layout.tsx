@@ -1,39 +1,67 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata, Viewport } from "next";
+import { siteConfig, siteOgImage } from "@/shared/config/site";
+import { JsonLd } from "@/shared/seo/json-ld";
+import {
+  createSchemaGraph,
+  organizationSchema,
+  websiteSchema,
+} from "@/shared/seo/schema";
+import "@/shared/frontend/styles/globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://Forsecure.id",
-  ),
-  title: "Forsecure — Offensive Security & Secure Engineering",
-  description:
-    "Forsecure helps identify and mitigate risk through penetration testing, secure coding training, and cybersecurity consulting.",
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  keywords: [
+    "penetration testing Indonesia",
+    "cybersecurity consulting",
+    "secure coding training",
+    "offensive security",
+    "ISO 27001 consulting",
+  ],
+  category: "technology",
   icons: {
     icon: [{ url: "/forsecure_fs_ico.ico", type: "image/x-icon" }],
     shortcut: ["/forsecure_fs_ico.ico"],
   },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Forsecure — Think Like an Attacker. Build with Security.",
-    description:
-      "Offensive security, application security, and secure engineering for more resilient systems.",
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     type: "website",
-    locale: "en_US",
-    images: [
-      {
-        url: "/og.png",
-        width: 1733,
-        height: 907,
-        alt: "Forsecure — Think Like an Attacker. Build with Security.",
-      },
-    ],
+    locale: siteConfig.locale,
+    images: [siteOgImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "Forsecure — Think Like an Attacker. Build with Security.",
-    description:
-      "Offensive security, application security, and secure engineering for more resilient systems.",
-    images: ["/og.png"],
+    description: siteConfig.description,
+    images: [siteOgImage.url],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#071914",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -43,7 +71,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <JsonLd
+          data={createSchemaGraph([organizationSchema, websiteSchema])}
+        />
+        {children}
+      </body>
     </html>
   );
 }

@@ -184,6 +184,10 @@ export const services: Service[] = [
   },
 ];
 
+const servicesBySlug = new Map(
+  services.map((service) => [service.slug, service] as const),
+);
+
 export function getService(slug: string) {
-  return services.find((service) => service.slug === slug);
+  return servicesBySlug.get(slug);
 }

@@ -11,7 +11,7 @@
     "build:cpanel": "npm run build && node scripts/prepare-cpanel.mjs",
     "start": "node server.cjs",
     "start:next": "next start",
-    "test": "npm run build && node --test tests/app.test.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern .next",
     "typecheck": "tsc --noEmit"
   },
