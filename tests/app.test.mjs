@@ -57,3 +57,17 @@ test("publishes the current service offering", async () => {
   assert.match(contactForm, /<option>Cybersecurity Consulting<\/option>/);
   assert.doesNotMatch(serviceData, /title: "Static Application Security Testing"/);
 });
+
+test("keeps the cPanel deployment workflow repeatable", async () => {
+  const cpanelConfig = await readFile(new URL(".cpanel.yml", root), "utf8");
+  const deployScript = await readFile(
+    new URL("scripts/deploy-cpanel.sh", root),
+    "utf8",
+  );
+
+  assert.match(cpanelConfig, /scripts\/deploy-cpanel\.sh/);
+  assert.match(deployScript, /ln -s "\$VENV_MODULES" node_modules/);
+  assert.match(deployScript, /npm run build/);
+  assert.match(deployScript, /git checkout -- next-env\.d\.ts/);
+  assert.match(deployScript, /touch tmp\/restart\.txt/);
+});
