@@ -4,7 +4,7 @@ import {
   generateServiceStaticParams,
   ServiceDetailPage,
   type ServiceDetailPageProps,
-} from "@/features/services/frontend/service-detail-page";
+} from "@/app/services/frontend";
 
 export function generateStaticParams() {
   return generateServiceStaticParams();

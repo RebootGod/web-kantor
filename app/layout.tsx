@@ -6,7 +6,7 @@ import {
   organizationSchema,
   websiteSchema,
 } from "@/shared/seo/schema";
-import "@/shared/frontend/styles/globals.css";
+import "@/shared/frontend/styles/base.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

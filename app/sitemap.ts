@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
-import { getResearchArticles } from "@/features/research/backend/research-repository";
-import { services } from "@/features/services/backend/service-catalog";
+import { getResearchArticles } from "@/app/research/backend";
+import { services } from "@/app/services/backend";
 import { absoluteUrl } from "@/shared/config/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

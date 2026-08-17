@@ -18,14 +18,14 @@ await cp(path.join(root, "public"), path.join(outputDirectory, "public"), {
 });
 const researchContentOutput = path.join(
   outputDirectory,
-  "features",
+  "app",
   "research",
   "backend",
   "content",
 );
 await mkdir(path.dirname(researchContentOutput), { recursive: true });
 await cp(
-  path.join(root, "features", "research", "backend", "content"),
+  path.join(root, "app", "research", "backend", "content"),
   researchContentOutput,
   { recursive: true },
 );

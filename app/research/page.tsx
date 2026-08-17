@@ -1,4 +1,4 @@
-import ResearchPage from "@/features/research/frontend/research-page";
+import { ResearchPage } from "@/app/research/frontend";
 import { createPageMetadata } from "@/shared/seo/metadata";
 
 export const metadata = createPageMetadata({

@@ -1,4 +1,4 @@
-import ContactPage from "@/features/contact-us/frontend/contact-page";
+import { ContactPage } from "@/app/contact/frontend";
 import { createPageMetadata } from "@/shared/seo/metadata";
 
 export const metadata = createPageMetadata({

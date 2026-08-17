@@ -4,7 +4,7 @@ import {
   generateResearchArticleStaticParams,
   ResearchArticlePage,
   type ResearchArticlePageProps,
-} from "@/features/research/frontend/research-article-page";
+} from "@/app/research/frontend";
 
 export function generateStaticParams() {
   return generateResearchArticleStaticParams();

@@ -4,6 +4,7 @@ const isProduction = process.env.NODE_ENV === "production";
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isProduction ? "" : " 'unsafe-eval'"}`,
+  "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self' data:",
@@ -33,6 +34,7 @@ const SECURITY_HEADERS = [
   },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
   { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
+  { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
 ];
 
 const nextConfig: NextConfig = {
@@ -59,7 +61,7 @@ const nextConfig: NextConfig = {
   },
 
   outputFileTracingIncludes: {
-    "/*": ["./features/research/backend/content/**/*.mdx"],
+    "/*": ["./app/research/backend/content/**/*.mdx"],
   },
 
   experimental: {

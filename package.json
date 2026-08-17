@@ -13,24 +13,25 @@
     "start:next": "next start",
     "test": "npm run build && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern .next",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "security:audit": "npm audit --omit=dev --audit-level=high"
   },
   "dependencies": {
     "@mdx-js/mdx": "3.1.1",
     "gray-matter": "4.0.3",
-    "next": "16.3.0",
-    "nodemailer": "9.0.3",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
+    "next": "16.3.1",
+    "nodemailer": "9.0.5",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "remark-gfm": "4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "9.39.4",
-    "@next/eslint-plugin-next": "16.2.6",
+    "@next/eslint-plugin-next": "16.3.1",
     "@types/node": "22.19.19",
     "@types/nodemailer": "8.0.1",
-    "@types/react": "19.2.14",
-    "@types/react-dom": "19.2.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
     "eslint": "9.39.4",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",

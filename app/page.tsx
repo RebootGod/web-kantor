@@ -1,6 +1,7 @@
-import HomePage from "@/features/homepage/frontend/homepage-page";
+import { HomePage } from "@/app/homepage/frontend";
 import { siteConfig } from "@/shared/config/site";
 import { createPageMetadata } from "@/shared/seo/metadata";
+import "./homepage/frontend/styles/homepage.css";
 
 export const metadata = createPageMetadata({
   title: siteConfig.title,

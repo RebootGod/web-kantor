@@ -33,7 +33,7 @@ test("includes all public application routes in the build manifest", async () =>
 test("keeps Research content and contact configuration deployable", async () => {
   const article = await readFile(
     new URL(
-      "features/research/backend/content/introducing-forsecure-research.mdx",
+      "app/research/backend/content/introducing-forsecure-research.mdx",
       root,
     ),
     "utf8",
@@ -61,31 +61,51 @@ test("ships the Forsecure logo and favicon", async () => {
 
 test("publishes the current service offering", async () => {
   const serviceCatalog = await readFile(
-    new URL("features/services/backend/service-catalog.ts", root),
+    new URL("app/services/backend/service-catalog.ts", root),
     "utf8",
   );
+  const serviceDefinitions = (
+    await Promise.all(
+      [
+        "cybersecurity-consulting.ts",
+        "penetration-testing.ts",
+        "secure-coding-training.ts",
+      ].map((filename) =>
+        readFile(
+          new URL(`app/services/backend/services/${filename}`, root),
+          "utf8",
+        ),
+      ),
+    )
+  ).join("\n");
   const contactOptions = await readFile(
-    new URL("features/contact-us/shared/contact-options.ts", root),
+    new URL("app/contact/shared/contact-options.ts", root),
     "utf8",
   );
 
-  assert.match(serviceCatalog, /slug: "cybersecurity-consulting"/);
-  assert.match(serviceCatalog, /ISO\/IEC 27001/);
-  assert.match(serviceCatalog, /ISO\/IEC 27701/);
-  assert.match(serviceCatalog, /Android and iOS Application/);
-  assert.match(serviceCatalog, /Network and Infrastructure/);
-  assert.match(serviceCatalog, /\["Hands-on vulnerable code labs", "code-lab"\]/);
+  assert.match(serviceCatalog, /cybersecurityConsulting/);
+  assert.match(serviceCatalog, /penetrationTesting/);
+  assert.match(serviceCatalog, /secureCodingTraining/);
+  assert.match(serviceDefinitions, /slug: "cybersecurity-consulting"/);
+  assert.match(serviceDefinitions, /ISO\/IEC 27001/);
+  assert.match(serviceDefinitions, /ISO\/IEC 27701/);
+  assert.match(serviceDefinitions, /Android and iOS Application/);
+  assert.match(serviceDefinitions, /Network and Infrastructure/);
   assert.match(
-    serviceCatalog,
+    serviceDefinitions,
+    /\["Hands-on vulnerable code labs", "code-lab"\]/,
+  );
+  assert.match(
+    serviceDefinitions,
     /\["ISO\/IEC 27701 privacy information management", "privacy"\]/,
   );
   assert.match(
-    serviceCatalog,
+    serviceDefinitions,
     /Tested\. Hardened\. Production-ready applications\./,
   );
   assert.match(contactOptions, /"Cybersecurity Consulting"/);
   assert.doesNotMatch(
-    serviceCatalog,
+    serviceDefinitions,
     /title: "Static Application Security Testing"/,
   );
 });
@@ -107,7 +127,7 @@ test("keeps the cPanel deployment workflow repeatable", async () => {
 test("bundles Research content into the standalone deployment", async () => {
   await access(
     new URL(
-      ".next/standalone/features/research/backend/content/introducing-forsecure-research.mdx",
+      ".next/standalone/app/research/backend/content/introducing-forsecure-research.mdx",
       root,
     ),
   );
